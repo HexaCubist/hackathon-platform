@@ -64,11 +64,12 @@ export const getProjects = async (
 			readProjectsItems({
 				filter: {
 					featured: true
-				}
+				},
+				limit: 500
 			})
 		);
 	} else {
-		res = await client.request(readProjectsItems());
+		res = await client.request(readProjectsItems({ limit: 500 }));
 	}
 	if (!res) {
 		throw new Error('Projects not found');
