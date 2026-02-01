@@ -1,9 +1,9 @@
-import { ImageResponse } from '@vercel/og';
 import type { RequestEvent } from '@sveltejs/kit';
 import heroImage from '../../../static/art/hero.jpeg?inline';
 import terribleLogo from '../../../static/logo-w.svg?inline';
 import manrope from '@fontsource/manrope/files/manrope-latin-700-normal.woff?arraybuffer';
 import { env } from '$env/dynamic/public';
+import { ImageResponse } from '@cf-wasm/og';
 
 const DEFAULT_TITLE = 'A weekend adventure in creating strange things ✨';
 const MAX_LINES = 3;

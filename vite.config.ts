@@ -4,5 +4,6 @@ import { defineConfig } from 'vite';
 import arraybuffer from 'vite-plugin-arraybuffer';
 
 export default defineConfig({
-	plugins: [sveltekit(), tailwindcss(), arraybuffer()]
+	plugins: [sveltekit(), tailwindcss(), arraybuffer()],
+	external: ['@cloudflare/pages-plugin-vercel-og']
 });
