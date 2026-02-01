@@ -3,7 +3,8 @@ import heroImage from '../../../static/art/hero.jpeg?inline';
 import terribleLogo from '../../../static/logo-w.svg?inline';
 import manrope from '@fontsource/manrope/files/manrope-latin-700-normal.woff?arraybuffer';
 import { env } from '$env/dynamic/public';
-import { ImageResponse } from '@cf-wasm/og';
+import { ImageResponse } from '@cf-wasm/og/workerd';
+import { PhotonImage } from '@cf-wasm/photon/workerd';
 
 const DEFAULT_TITLE = 'A weekend adventure in creating strange things ✨';
 const MAX_LINES = 3;
@@ -162,7 +163,7 @@ export const GET = async ({ url, fetch }: RequestEvent) => {
 			}
 		};
 
-		return new ImageResponse(html, {
+		const pngResponse = new ImageResponse(html, {
 			width: 1200,
 			height: 630,
 			fonts: [
@@ -173,6 +174,19 @@ export const GET = async ({ url, fetch }: RequestEvent) => {
 					weight: 700
 				}
 			]
+		});
+
+		// Convert PNG to JPEG using photon
+		const pngBytes = new Uint8Array(await pngResponse.arrayBuffer());
+		const image = PhotonImage.new_from_byteslice(pngBytes);
+		const jpegBytes = image.get_bytes_jpeg(85);
+		image.free();
+
+		return new Response(jpegBytes, {
+			headers: {
+				'Content-Type': 'image/jpeg',
+				'Cache-Control': 'public, max-age=31536000, immutable'
+			}
 		});
 	} catch (e) {
 		console.error('OG Image generation error:', e);
