@@ -13,8 +13,8 @@ export const load: PageServerLoad = async ({ params, url }) => {
 
 	const ogImage = getOgImageUrl(
 		{
-			title: projectTitle,
-			assetId
+			title: projectTitle
+			// assetId
 		},
 		url.origin
 	);
