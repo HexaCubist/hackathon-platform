@@ -26,29 +26,12 @@ function buildImageUrl(assetId: string): string {
 export const GET = async ({ url, fetch }: RequestEvent) => {
 	const title = url.searchParams.get('title') || DEFAULT_TITLE;
 	const assetId = url.searchParams.get('asset');
+	const location = url.searchParams.get('location');
+	let padding = 150;
 
 	let imageSource: string = heroImage;
 	if (assetId) {
 		imageSource = buildImageUrl(assetId);
-		// const fullImageUrl = buildImageUrl(assetId);
-		// // Fetch image using SvelteKit's fetch (works with relative URLs in dev)
-		// try {
-		// 	const imageResponse = await fetch(fullImageUrl);
-		// 	if (imageResponse.ok) {
-		// 		imageSource = await imageResponse.blob().then((blob) => {
-		// 			return new Promise<string>((resolve) => {
-		// 				var reader = new FileReader();
-		// 				reader.onload = function () {
-		// 					resolve(reader.result as string);
-		// 				};
-		// 				reader.readAsDataURL(blob);
-		// 			});
-		// 		});
-		// 	}
-		// } catch (e) {
-		// 	console.error('Error fetching image for OG generation:', e);
-		// 	// If fetch fails, fall back to URL (might work in production)
-		// }
 	}
 
 	const truncatedTitle = truncateText(title);
@@ -102,6 +85,27 @@ export const GET = async ({ url, fetch }: RequestEvent) => {
 						}
 					}
 				},
+				// Location label (top right)
+				...(location
+					? [
+							{
+								type: 'div',
+								props: {
+									style: {
+										position: 'absolute',
+										top: `${padding}px`,
+										right: `${padding + 20}px`,
+										fontFamily: 'Manrope',
+										fontSize: '60px',
+										fontWeight: '700',
+										color: 'white',
+										textShadow: '0 2px 20px rgba(0,0,0,0.5)'
+									},
+									children: location
+								}
+							}
+						]
+					: []),
 				// Content container
 				{
 					type: 'div',
@@ -115,7 +119,7 @@ export const GET = async ({ url, fetch }: RequestEvent) => {
 							display: 'flex',
 							flexDirection: 'column',
 							justifyContent: 'flex-end',
-							padding: '40px 50px 50px 50px'
+							padding: `${padding}px`
 						},
 						children: [
 							// Logo/Brand (Terrible Ideas)
@@ -135,11 +139,11 @@ export const GET = async ({ url, fetch }: RequestEvent) => {
 								props: {
 									style: {
 										fontFamily: 'Manrope',
-										fontSize: '56px',
+										fontSize: '50px',
 										fontWeight: '700',
 										color: 'white',
 										lineHeight: 1.1,
-										maxWidth: '800px'
+										maxWidth: '1000px'
 									},
 									children: truncatedTitle
 								}

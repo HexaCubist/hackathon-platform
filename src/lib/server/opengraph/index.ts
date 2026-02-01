@@ -1,9 +1,10 @@
 import { env } from '$env/dynamic/public';
 
-const DEFAULT_TITLE = 'A weekend adventure in creating strange things';
+const DEFAULT_TITLE = 'A weekend adventure in creating strange things ✨';
 
 export interface OgParams {
 	title?: string;
+	location?: string;
 	assetId?: string;
 }
 
@@ -17,6 +18,10 @@ export function getOgImageUrl(params: OgParams = {}, baseUrl?: string): string {
 
 	if (params.assetId) {
 		url.searchParams.set('asset', params.assetId);
+	}
+
+	if (params.location) {
+		url.searchParams.set('location', params.location);
 	}
 
 	return url.toString();
