@@ -12,6 +12,7 @@
 	let { data }: PageProps = $props();
 
 	let project = $derived(data.project);
+	let og = $derived(data.og);
 
 	onMount(() => {
 		const lightbox = new PhotoSwipeLightbox({
@@ -38,6 +39,19 @@
 
 	let imageRichData = $derived(typeof project.image === 'string' ? undefined : project.image);
 </script>
+
+<svelte:head>
+	{#if og}
+		<meta property="og:title" content={og.title} />
+		<meta property="og:description" content={og.description} />
+		<meta property="og:image" content={og.image} />
+		<meta property="og:url" content={og.url} />
+		<meta name="twitter:title" content={og.title} />
+		<meta name="twitter:description" content={og.description} />
+		<meta name="twitter:image" content={og.image} />
+		<title>{og.title}</title>
+	{/if}
+</svelte:head>
 
 <PageHeader rough bg={project.image ? filetoURL(project.image, imagePreset.medium) : undefined}>
 	<div class="pt-10 pb-20 text-white">

@@ -13,9 +13,23 @@
 	import EventCountdown from '$lib/components/eventCountdown.svelte';
 	let { data }: PageProps = $props();
 	let event = $derived(data.event);
+	let og = $derived(data.og);
 
 	let scheduleModal: HTMLDialogElement | null = $state(null);
 </script>
+
+<svelte:head>
+	{#if og}
+		<meta property="og:title" content={og.title} />
+		<meta property="og:description" content={og.description} />
+		<meta property="og:image" content={og.image} />
+		<meta property="og:url" content={og.url} />
+		<meta name="twitter:title" content={og.title} />
+		<meta name="twitter:description" content={og.description} />
+		<meta name="twitter:image" content={og.image} />
+		<title>{og.title}</title>
+	{/if}
+</svelte:head>
 
 <img
 	src={filetoURL(event.Event_Background, imagePreset.large)}

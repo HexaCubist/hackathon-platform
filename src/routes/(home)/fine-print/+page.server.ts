@@ -1,20 +1,19 @@
 import type { PageServerLoad } from './$types';
-import { getProjects } from '$lib/server/directus';
 import { getOgImageUrl } from '$lib/server/opengraph';
 
 export const load: PageServerLoad = async ({ url }) => {
 	const ogImage = getOgImageUrl(
 		{
-			title: 'Projects'
+			title: 'Fine Print'
 		},
 		url.origin
 	);
 
 	return {
-		projects: await getProjects(),
 		og: {
-			title: 'Projects | Terrible Ideas',
-			description: 'Browse projects created at Terrible Ideas hackathons.',
+			title: 'Fine Print | Terrible Ideas',
+			description:
+				'Intellectual property rights, terms and conditions for Terrible Ideas hackathon.',
 			image: ogImage,
 			url: url.href
 		}

@@ -16,6 +16,7 @@
 	"devDependencies": {
 		"@directus/sdk": "^19.1.0",
 		"@fontsource-variable/manrope": "^5.2.5",
+		"@fontsource/manrope": "^5.2.8",
 		"@iconify/svelte": "^4.2.0",
 		"@sveltejs/adapter-cloudflare": "^5.0.1",
 		"@sveltejs/kit": "^2.16.0",
@@ -41,5 +42,9 @@
 		"vite": "^6.0.0",
 		"wrangler": "^4.20.3"
 	},
-	"packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+	"packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
+	"dependencies": {
+		"@vercel/og": "^0.8.6",
+		"vite-plugin-arraybuffer": "^0.1.4"
+	}
 }
