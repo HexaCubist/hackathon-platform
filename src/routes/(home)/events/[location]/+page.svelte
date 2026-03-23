@@ -101,7 +101,7 @@
 		<div class="flex flex-col items-center justify-center">
 			<img src="/art/raccoon-hero.png" alt="" class="w-full max-w-sm md:hidden" />
 			<div class="hidden md:block">
-				<EventCountdown {event}>
+				<EventCountdown {event} monthsBefore={3}>
 					<img src="/art/raccoon-hero.png" alt="" class="w-full max-w-sm" />
 				</EventCountdown>
 			</div>
