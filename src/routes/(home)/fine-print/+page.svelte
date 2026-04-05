@@ -83,8 +83,8 @@
 
 				<li>
 					In the case that you, or a guest you invited, cause damage to Terrible Hack’s, the
-					University of Auckland’s, or another participant’s property, you will be held liable for
-					any costs of repair or replacement.
+					venue's, or another participant’s property, you will be held liable for any costs of
+					repair or replacement.
 				</li>
 			</ul>
 
